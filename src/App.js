@@ -8,27 +8,31 @@ class App extends Component {
     super();
 
     this.state = {
-      name: {firstName: 'John', lastName: 'Smith'},
-      home: 'North America'
+      monsters: [
+        {
+          name: 'Linda',
+        },
+        {
+          name: 'Frank',
+        },
+        {
+          name: 'Jackie',
+        },
+        {
+          name: 'Drac',
+        },
+      ]
     }
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hello {this.state.name.firstName} {this.state.name.lastName}! I live in { this.state.home }.
-          </p>
-          <button onClick={() => {
-            this.setState((state, props) => {	// This is an updater function.
-              return {
-                name: { firstName:'Adam', lastName:'Weiler' }, // Return an object that will shallow merge against state.
-              };
-            });
-          }}>Change name</button>
-        </header>
+        {
+          this.state.monsters.map((monster) => {
+            return <h1>{monster.name}</h1>
+          })
+        }
       </div>
     );
   }
