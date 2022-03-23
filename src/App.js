@@ -22,8 +22,11 @@ class App extends Component {
             Hello {this.state.name.firstName} {this.state.name.lastName}! I live in { this.state.home }.
           </p>
           <button onClick={() => {
-            this.setState({name: {firstName:'Adam', lastName:'Weiler'}, home: 'Mississauga'});
-            console.log(this.state)
+            this.setState((state, props) => {	// This is an updater function.
+              return {
+                name: { firstName:'Adam', lastName:'Weiler' }, // Return an object that will shallow merge against state.
+              };
+            });
           }}>Change name</button>
         </header>
       </div>
