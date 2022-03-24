@@ -9,26 +9,20 @@ class App extends Component {
 
     this.state = {
       monsters: [],
-      // monstersFiltered: [],
       searchField: '',
     }
     console.clear()
-    console.log('1 constructor')
+    // console.log('1 constructor')
   }
 
   componentDidMount() {
-    console.log('3 componentDidMount')
+    // console.log('3 componentDidMount')
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
 
     .then((users) => this.setState(() => {
-      // console.log(users[5].name)
-      console.log(users)
-
+      // console.log(users)
       return {monsters: users}
-    },
-    () => {
-      console.log(this.state)
     }
     ));
   }
@@ -50,7 +44,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('2 render')
+    // console.log('2 render')
     // console.log(this.state)
 
     //Destructuring, so we don't need to call 'this' everywhere. Makes things more readable too.
@@ -58,20 +52,10 @@ class App extends Component {
     const { onSearchChange } = this;
     const filteredMonsters = monsters.filter( (mon) => mon.name.toLocaleLowerCase().includes(searchField));
 
-
     return (
       <div className="App">
         <input className='search-box' type='search' placeholder='Search monsters' onChange={onSearchChange} />
-
-        {
-          filteredMonsters.map((monster) => {
-            return <div key={monster.id}>
-              <h1>{monster.name}</h1>
-            </div>
-          })
-        }
-
-        <CardList />
+        <CardList monsters={filteredMonsters}/>
       </div>
     );
   }
