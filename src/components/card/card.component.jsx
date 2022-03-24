@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 import './card.styles.css';
 
-class Card extends Component {
+class Card extends Component { // A component that display monster card with image, name, email.
     render() {
 
         const { name, email, id } = this.props.monster;

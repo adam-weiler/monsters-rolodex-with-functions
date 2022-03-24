@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Card from './card.component'
+import Card from '../card/card.component'
 
 import './card-list.styles.css';
 
@@ -11,8 +11,8 @@ class CardList extends Component {
         return (
             <div className='card-list'>
                 {monsters.map(monster => {
-                    // const { name, email, id } = monster; //Destructure the monster to variables to make code cleaner.
                     return (
+                        // We want to pass the entire monster object through.
                         <Card monster={monster} key={monster.id} />
                     )})}
             </div>
