@@ -1,4 +1,5 @@
 import { Component } from 'react';
+
 import './search-box.styles.css';
 
 //This component renders a searchbox to filter down the monsters list.
