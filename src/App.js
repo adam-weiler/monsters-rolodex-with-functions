@@ -7,10 +7,9 @@ import './App.css';
 const App = () => {
   const [searchField, setSearchField] = useState('');  // Gives us back an array of 2 values. [value, setValue()] We expect string so set as blank for now.
   const [monsters, setMonsters] = useState([]); // monsters is our value, setMonsters is our setter. We expect an array so set it as blank for now.
-  const [stringField, setStringField] = useState('');
   const [filteredMonsters, setFilteredMonsters] = useState([monsters]); // We use monsters as default value, just in case.
 
-  console.log('render')
+  // console.log('render')
 
   useEffect(() => { // This will run once when the app loads. 
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -25,7 +24,7 @@ const App = () => {
 
     setFilteredMonsters(newFilteredMonsters);
 
-    console.log('FILTER MONSTERS')
+    // console.log('FILTER MONSTERS')
 
   }, [monsters, searchField]); // It will only run if our monsters array changes, or our searchField changes.
 
@@ -35,12 +34,6 @@ const App = () => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
   }
-
-  const onStringChange = (event) => {
-    setStringField(event.target.value);
-  }
-
-  
 
   // console.log(filteredMonsters)
 
@@ -53,10 +46,6 @@ const App = () => {
         onChangeHandler={onSearchChange} 
         placeholder='search monsters'
       />
-      <SearchBox 
-      onChangeHandler={onStringChange} 
-      placeholder='SET STRING'
-    />
       <CardList monsters={filteredMonsters}/>
     </div>
   );
