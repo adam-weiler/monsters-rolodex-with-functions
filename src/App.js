@@ -6,6 +6,7 @@ import './App.css';
 
 const App = () => {
   const [searchField, setSearchField] = useState('');  // Gives us back an array of 2 values. [value, setValue()] We expect string so set as blank for now.
+  const [title, setTitle] = useState('');
   const [monsters, setMonsters] = useState([]); // monsters is our value, setMonsters is our setter. We expect an array so set it as blank for now.
   const [filteredMonsters, setFilteredMonsters] = useState([monsters]); // We use monsters as default value, just in case.
 
@@ -35,68 +36,31 @@ const App = () => {
     setSearchField(searchFieldString);
   }
 
+  const onTitleChange = (event) => { // Whenever the user types in the text box, the monsters displayed are filtered down.
+    const searchFieldString = event.target.value.toLocaleLowerCase();
+    setTitle(searchFieldString);
+  }
+
   // console.log(filteredMonsters)
 
   return (
     <div className="App">
-      <h1 className="app-title">Monsters Rolodex</h1>
+      <h1 className="app-title">{title}</h1>
 
       <SearchBox 
         className='monsters-search-box'
         onChangeHandler={onSearchChange} 
         placeholder='search monsters'
       />
+      <br/>
+      <SearchBox 
+        className='title-search-box'
+        onChangeHandler={onTitleChange} 
+        placeholder='TITLE CHANGE'
+      />
       <CardList monsters={filteredMonsters}/>
     </div>
   );
 }
-
-// class App extends Component {
-//   constructor() {
-//     super();
-
-//     this.state = {
-//       monsters: [],
-//       searchField: '',
-//     }
-//     console.clear()
-//     // console.log('1 constructor')
-//   }
-
-//   componentDidMount() {
-//     // console.log('3 componentDidMount')
-//     fetch('https://jsonplaceholder.typicode.com/users')
-//     .then(response => response.json())
-
-//     .then((users) => this.setState(() => {
-//       // console.log(users)
-//       return {monsters: users}
-//     }
-//     ));
-//   }
-
-//   render() {
-//     // console.log('2 render')
-//     // console.log(this.state)
-
-//     //Destructuring, so we don't need to call 'this' everywhere. Makes things more readable too.
-//     const { monsters, searchField } = this.state;
-//     const { onSearchChange } = this;
-//     const filteredMonsters = monsters.filter( (mon) => mon.name.toLocaleLowerCase().includes(searchField));
-
-//     return (
-//       <div className="App">
-//         <h1 className="app-title">Monsters Rolodex</h1>
-
-//         <SearchBox 
-//           className='monsters-search-box'
-//           onChangeHandler={onSearchChange} 
-//           placeholder='search monsters'
-//         />
-
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
